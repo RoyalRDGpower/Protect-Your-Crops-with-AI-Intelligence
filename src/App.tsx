@@ -149,7 +149,7 @@ const DemoScan = () => {
   }, []);
 
   return (
-    <div className="relative w-full max-w-xs mx-auto">
+    <div className="relative w-full max-w-xs mx-auto sm:max-w-xs px-2 sm:px-0">
       <div className="relative bg-gradient-to-br from-emerald-50 to-green-100 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
         {/* Leaf Image Simulation */}
         <div className="aspect-square relative">
@@ -252,7 +252,7 @@ const Navigation = () => {
               href="https://wa.me/2349079246026"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200"
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200"
             >
               Get Started
             </a>
@@ -282,7 +282,7 @@ const Navigation = () => {
                 href="https://wa.me/2349079246026"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold mt-4 text-center"
+                className="block w-full bg-emerald-600 active:scale-95 text-white py-3 rounded-xl font-semibold mt-4 text-center transition-transform"
               >
                 Get Started
               </a>
@@ -324,7 +324,7 @@ const Hero = () => (
               href="https://wa.me/2349079246026"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:shadow-xl hover:shadow-emerald-200 flex items-center justify-center gap-2"
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:shadow-xl hover:shadow-emerald-200 flex items-center justify-center gap-2"
             >
               <CameraIcon className="w-5 h-5" />
               Start Free Trial
@@ -333,7 +333,7 @@ const Hero = () => (
               href="https://wa.me/2349079246026"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:border-emerald-300 flex items-center justify-center gap-2"
+              className="bg-white hover:bg-gray-50 active:scale-95 text-gray-700 border-2 border-gray-200 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:border-emerald-300 flex items-center justify-center gap-2"
             >
               <PhoneIcon className="w-5 h-5" />
               Download App
@@ -844,19 +844,19 @@ const Footer = () => (
         <div>
           <h4 className="text-white font-semibold mb-4">Company</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="https://elitehustlevaultcentral.blogspot.com/p/about-royal-digital-empire_10.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">About Us</a></li>
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">Blog</a></li>
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">Careers</a></li>
-            <li><a href="https://wa.me/2349079246026" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Contact</a></li>
+            <li><a href="https://elitehustlevaultcentral.blogspot.com/p/about-royal-digital-empire_10.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors py-1 block">About Us</a></li>
+            <li><a href="#" className="hover:text-emerald-400 transition-colors py-1 block">Blog</a></li>
+            <li><a href="#" className="hover:text-emerald-400 transition-colors py-1 block">Careers</a></li>
+            <li><a href="https://wa.me/2349079246026" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors py-1 block">Contact</a></li>
           </ul>
         </div>
         <div>
           <h4 className="text-white font-semibold mb-4">Support</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">Help Center</a></li>
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">Documentation</a></li>
-            <li><a href="https://elitehustlevaultcentral.blogspot.com/p/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+            <li><a href="#" className="hover:text-emerald-400 transition-colors py-1 block">Help Center</a></li>
+            <li><a href="#" className="hover:text-emerald-400 transition-colors py-1 block">Documentation</a></li>
+            <li><a href="https://elitehustlevaultcentral.blogspot.com/p/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors py-1 block">Privacy Policy</a></li>
+            <li><a href="#" className="hover:text-emerald-400 transition-colors py-1 block">Terms of Service</a></li>
           </ul>
         </div>
       </div>
