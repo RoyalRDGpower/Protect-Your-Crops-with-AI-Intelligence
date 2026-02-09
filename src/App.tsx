@@ -296,7 +296,7 @@ const Navigation = () => {
 
 // Hero Section
 const Hero = () => (
-  <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+  <section className="relative pt-24 pb-12 lg:pt-40 lg:pb-32 overflow-hidden">
     {/* Background Elements */}
     <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-lime-50" />
     <div className="absolute top-20 right-0 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl" />
@@ -430,7 +430,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-white">
+    <section id="features" className="py-12 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -495,7 +495,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-gradient-to-b from-emerald-50 to-white">
+    <section id="how-it-works" className="py-12 lg:py-20 bg-gradient-to-b from-emerald-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -527,14 +527,14 @@ const HowItWorks = () => {
 // Validation Section
 const ValidationSection = () => {
   return (
-    <section className="py-20 bg-emerald-900 text-white relative overflow-hidden">
+    <section className="py-12 lg:py-20 bg-emerald-900 text-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 p-12 opacity-10">
         <LeafIcon className="w-64 h-64" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-emerald-800 text-emerald-100 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-emerald-700">
               <span className="w-2 h-2 bg-lime-400 rounded-full animate-pulse" />
@@ -645,7 +645,7 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-white">
+    <section id="pricing" className="py-12 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -744,7 +744,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-white to-emerald-50">
+    <section id="testimonials" className="py-12 lg:py-20 bg-gradient-to-b from-white to-emerald-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -785,7 +785,7 @@ const Testimonials = () => {
 
 // CTA Section
 const CTA = () => (
-  <section className="py-20 bg-emerald-600">
+  <section className="py-12 lg:py-20 bg-emerald-600">
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
         Ready to Protect Your Crops?
@@ -844,7 +844,7 @@ const Footer = () => (
         <div>
           <h4 className="text-white font-semibold mb-4">Company</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">About Us</a></li>
+            <li><a href="https://elitehustlevaultcentral.blogspot.com/p/about-royal-digital-empire_10.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">About Us</a></li>
             <li><a href="#" className="hover:text-emerald-400 transition-colors">Blog</a></li>
             <li><a href="#" className="hover:text-emerald-400 transition-colors">Careers</a></li>
             <li><a href="https://wa.me/2349079246026" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Contact</a></li>
@@ -855,7 +855,7 @@ const Footer = () => (
           <ul className="space-y-2 text-sm">
             <li><a href="#" className="hover:text-emerald-400 transition-colors">Help Center</a></li>
             <li><a href="#" className="hover:text-emerald-400 transition-colors">Documentation</a></li>
-            <li><a href="#" className="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+            <li><a href="https://elitehustlevaultcentral.blogspot.com/p/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
             <li><a href="#" className="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
           </ul>
         </div>
