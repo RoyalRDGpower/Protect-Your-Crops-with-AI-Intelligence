@@ -77,3 +77,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     <a href="https://elitehustlevaultcentral.blogspot.com/p/about-royal-digital-empire_10.html">About Us</a>
   </p>
 </div>
+
+## ☁️ GitHub Actions Deployment to AWS
+
+This repository now includes a GitHub Actions workflow at `.github/workflows/deploy-aws.yml` that:
+
+1. Installs dependencies and builds the app (`npm ci` + `npm run build`).
+2. Runs `sam build` automatically **only if** `template.yaml` or `template.yml` exists.
+3. Deploys `dist/` to your AWS S3 hosting bucket.
+4. Optionally invalidates CloudFront.
+
+### Required GitHub configuration
+
+Set these in your GitHub repository:
+
+#### **Repository Secrets**
+- `AWS_ROLE_TO_ASSUME`: IAM role ARN for GitHub OIDC (example: `arn:aws:iam::<account-id>:role/github-actions-deploy`).
+
+#### **Repository Variables**
+- `AWS_REGION`: e.g. `us-east-1`
+- `S3_BUCKET`: target hosting bucket name
+- `CLOUDFRONT_DISTRIBUTION_ID` (optional): for cache invalidation
+
+### Trigger
+
+Deployment runs on:
+- Push to `main`
+- Manual trigger from Actions tab (`workflow_dispatch`)
