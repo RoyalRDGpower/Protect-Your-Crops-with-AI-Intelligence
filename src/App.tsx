@@ -248,14 +248,12 @@ const Navigation = () => {
                 {link.name}
               </a>
             ))}
-            <a
-              href="https://wa.me/2349079246026"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200"
+            <button
+              onClick={onOpenScanner}
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200 cursor-pointer"
             >
-              Get Started
-            </a>
+              Scan Crop Now
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -278,14 +276,12 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
-              <a
-                href="https://wa.me/2349079246026"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-emerald-600 active:scale-95 text-white py-3 rounded-xl font-semibold mt-4 text-center transition-transform"
+              <button
+                onClick={onOpenScanner}
+                className="block w-full bg-emerald-600 active:scale-95 text-white py-3 rounded-xl font-semibold mt-4 text-center transition-transform cursor-pointer"
               >
-                Get Started
-              </a>
+                Scan Crop Now
+              </button>
             </div>
           </div>
         )}
@@ -320,15 +316,13 @@ const Hero = () => (
             Works offline on any Android device - no internet needed!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a
-              href="https://wa.me/2349079246026"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:shadow-xl hover:shadow-emerald-200 flex items-center justify-center gap-2"
+            <button
+              onClick={onOpenScanner}
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:shadow-xl hover:shadow-emerald-200 flex items-center justify-center gap-2 cursor-pointer"
             >
               <CameraIcon className="w-5 h-5" />
-              Start Free Trial
-            </a>
+              Scan Crop Now
+            </button>
             <a
               href="https://wa.me/2349079246026"
               target="_blank"
@@ -699,19 +693,33 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <a
-                href={plan.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  "w-full py-3 rounded-xl font-semibold transition-all block text-center",
-                  plan.popular
-                    ? "bg-white text-emerald-600 hover:bg-emerald-50"
-                    : "bg-emerald-600 text-white hover:bg-emerald-700"
-                )}
-              >
-                {plan.cta}
-              </a>
+              {plan.name === "Free Trial" ? (
+                <button
+                  onClick={onOpenScanner}
+                  className={cn(
+                    "w-full py-3 rounded-xl font-semibold transition-all block text-center cursor-pointer",
+                    plan.popular
+                      ? "bg-white text-emerald-600 hover:bg-emerald-50"
+                      : "bg-emerald-600 text-white hover:bg-emerald-700"
+                  )}
+                >
+                  Scan for Free
+                </button>
+              ) : (
+                <a
+                  href={plan.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "w-full py-3 rounded-xl font-semibold transition-all block text-center",
+                    plan.popular
+                      ? "bg-white text-emerald-600 hover:bg-emerald-50"
+                      : "bg-emerald-600 text-white hover:bg-emerald-700"
+                  )}
+                >
+                  {plan.cta}
+                </a>
+              )}
             </div>
           ))}
         </div>
@@ -794,15 +802,13 @@ const CTA = () => (
         Start your free trial today and join thousands of farmers using AI to detect and treat crop diseases.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="https://flutterwave.com/pay/bho7r7ehnkso"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition-all flex items-center justify-center gap-2"
+        <button
+          onClick={onOpenScanner}
+          className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
-          Start Free Trial
+          Scan Your Crop
           <ArrowRightIcon className="w-5 h-5" />
-        </a>
+        </button>
         <a
           href="https://wa.me/2349079246026"
           target="_blank"
@@ -908,18 +914,22 @@ const Footer = () => (
 );
 
 // Main App Component
+import { Scanner } from "./components/Scanner";
+
 export function App() {
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
-      <Hero />
+      <Navigation onOpenScanner={() => setIsScannerOpen(true)} />
+      <Hero onOpenScanner={() => setIsScannerOpen(true)} />
       <Features />
       <HowItWorks />
       <ValidationSection />
-      <Pricing />
+      <Pricing onOpenScanner={() => setIsScannerOpen(true)} />
       <Testimonials />
-      <CTA />
+      <CTA onOpenScanner={() => setIsScannerOpen(true)} />
       <Footer />
+      {isScannerOpen && <Scanner onClose={() => setIsScannerOpen(false)} />}
     </div>
   );
 }
