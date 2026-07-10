@@ -209,8 +209,10 @@ const DemoScan = () => {
   );
 };
 
+import { Scanner } from './components/Scanner';
+
 // Navigation Component
-const Navigation = () => {
+const Navigation = ({ onOpenScanner }: { onOpenScanner: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -248,14 +250,12 @@ const Navigation = () => {
                 {link.name}
               </a>
             ))}
-            <a
-              href="https://wa.me/2349079246026"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200"
+            <button
+              onClick={onOpenScanner}
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200 cursor-pointer"
             >
               Get Started
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -278,14 +278,15 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
-              <a
-                href="https://wa.me/2349079246026"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-emerald-600 active:scale-95 text-white py-3 rounded-xl font-semibold mt-4 text-center transition-transform"
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  onOpenScanner();
+                }}
+                className="block w-full bg-emerald-600 active:scale-95 text-white py-3 rounded-xl font-semibold mt-4 text-center transition-transform cursor-pointer"
               >
                 Get Started
-              </a>
+              </button>
             </div>
           </div>
         )}
@@ -295,7 +296,7 @@ const Navigation = () => {
 };
 
 // Hero Section
-const Hero = () => (
+const Hero = ({ onOpenScanner }: { onOpenScanner: () => void }) => (
   <section className="relative pt-24 pb-12 lg:pt-40 lg:pb-32 overflow-hidden">
     {/* Background Elements */}
     <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-lime-50" />
@@ -320,15 +321,13 @@ const Hero = () => (
             Works offline on any Android device - no internet needed!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a
-              href="https://wa.me/2349079246026"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:shadow-xl hover:shadow-emerald-200 flex items-center justify-center gap-2"
+            <button
+              onClick={onOpenScanner}
+              className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:shadow-xl hover:shadow-emerald-200 flex items-center justify-center gap-2 cursor-pointer"
             >
               <CameraIcon className="w-5 h-5" />
               Start Free Trial
-            </a>
+            </button>
             <a
               href="https://wa.me/2349079246026"
               target="_blank"
@@ -784,7 +783,7 @@ const Testimonials = () => {
 };
 
 // CTA Section
-const CTA = () => (
+const CTA = ({ onOpenScanner }: { onOpenScanner: () => void }) => (
   <section className="py-12 lg:py-20 bg-emerald-600">
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -794,15 +793,13 @@ const CTA = () => (
         Start your free trial today and join thousands of farmers using AI to detect and treat crop diseases.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="https://flutterwave.com/pay/bho7r7ehnkso"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition-all flex items-center justify-center gap-2"
+        <button
+          onClick={onOpenScanner}
+          className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           Start Free Trial
           <ArrowRightIcon className="w-5 h-5" />
-        </a>
+        </button>
         <a
           href="https://wa.me/2349079246026"
           target="_blank"
@@ -909,17 +906,20 @@ const Footer = () => (
 
 // Main App Component
 export function App() {
+  const [showScanner, setShowScanner] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
-      <Hero />
+      <Navigation onOpenScanner={() => setShowScanner(true)} />
+      <Hero onOpenScanner={() => setShowScanner(true)} />
       <Features />
       <HowItWorks />
       <ValidationSection />
       <Pricing />
       <Testimonials />
-      <CTA />
+      <CTA onOpenScanner={() => setShowScanner(true)} />
       <Footer />
+      {showScanner && <Scanner onClose={() => setShowScanner(false)} />}
     </div>
   );
 }
