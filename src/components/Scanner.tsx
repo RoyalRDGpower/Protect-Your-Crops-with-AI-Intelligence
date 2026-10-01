@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { CameraIcon, UploadIcon, XIcon, CheckIcon, AlertCircleIcon } from 'lucide-react';
-import { cn } from '../utils/cn';
 import { analyzeImage, ScanResult } from '../services/ai';
+import { saveScan } from '../services/db';
 
 interface ScannerProps {
   onClose: () => void;
@@ -38,6 +38,18 @@ export function Scanner({ onClose }: ScannerProps) {
         setScanStep(step);
       });
       setResult(scanResult);
+
+      // Automatically save to local IndexedDB for offline history
+      try {
+        await saveScan(
+          image,
+          scanResult.disease,
+          scanResult.confidence,
+          scanResult.treatment.join('\n')
+        );
+      } catch (dbError) {
+        console.error("Failed to save scan locally:", dbError);
+      }
     } catch (error) {
       console.error("Scan failed", error);
       // Fallback result on error
