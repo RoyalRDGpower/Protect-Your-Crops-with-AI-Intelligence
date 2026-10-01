@@ -210,11 +210,38 @@ const DemoScan = () => {
 };
 
 import { Scanner } from './components/Scanner';
+import { useAuth } from './contexts/AuthContext';
+import { AuthModal } from './components/AuthModal';
+import { History } from './components/History';
+
+// Icons added for new features
+const LogInIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+    <polyline points="10 17 15 12 10 7" />
+    <line x1="15" y1="12" x2="3" y2="12" />
+  </svg>
+);
+const LogOutIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+    <polyline points="16 17 21 12 16 7" />
+    <line x1="21" y1="12" x2="9" y2="12" />
+  </svg>
+);
+const HistoryIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+    <path d="M3 3v5h5" />
+    <path d="M12 7v5l4 2" />
+  </svg>
+);
 
 // Navigation Component
-const Navigation = ({ onOpenScanner }: { onOpenScanner: () => void }) => {
+const Navigation = ({ onOpenScanner, onOpenAuth, onOpenHistory }: { onOpenScanner: () => void, onOpenAuth: () => void, onOpenHistory: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -244,12 +271,30 @@ const Navigation = ({ onOpenScanner }: { onOpenScanner: () => void }) => {
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <a key={link.name} href={link.href} className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">
                 {link.name}
               </a>
             ))}
+            <div className="h-6 w-px bg-gray-200 mx-2"></div>
+            {user ? (
+              <>
+                <button onClick={onOpenHistory} className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 font-medium">
+                  <HistoryIcon className="w-5 h-5" />
+                  <span>History</span>
+                </button>
+                <button onClick={logout} className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 font-medium">
+                  <LogOutIcon className="w-5 h-5" />
+                  <span>Logout</span>
+                </button>
+              </>
+            ) : (
+              <button onClick={onOpenAuth} className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 font-medium">
+                <LogInIcon className="w-5 h-5" />
+                <span>Login</span>
+              </button>
+            )}
             <button
               onClick={onOpenScanner}
               className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-emerald-200 cursor-pointer"
@@ -278,6 +323,24 @@ const Navigation = ({ onOpenScanner }: { onOpenScanner: () => void }) => {
                   {link.name}
                 </a>
               ))}
+              <div className="h-px bg-gray-100 my-2"></div>
+              {user ? (
+                <>
+                  <button onClick={() => { setIsOpen(false); onOpenHistory(); }} className="flex items-center gap-2 text-gray-700 font-medium p-2 hover:bg-emerald-50 rounded-lg">
+                    <HistoryIcon className="w-5 h-5" />
+                    <span>Scan History</span>
+                  </button>
+                  <button onClick={() => { setIsOpen(false); logout(); }} className="flex items-center gap-2 text-gray-700 font-medium p-2 hover:bg-emerald-50 rounded-lg">
+                    <LogOutIcon className="w-5 h-5" />
+                    <span>Logout</span>
+                  </button>
+                </>
+              ) : (
+                <button onClick={() => { setIsOpen(false); onOpenAuth(); }} className="flex items-center gap-2 text-gray-700 font-medium p-2 hover:bg-emerald-50 rounded-lg">
+                  <LogInIcon className="w-5 h-5" />
+                  <span>Login / Register</span>
+                </button>
+              )}
               <button
                 onClick={() => {
                   setIsOpen(false);
@@ -907,10 +970,16 @@ const Footer = () => (
 // Main App Component
 export function App() {
   const [showScanner, setShowScanner] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation onOpenScanner={() => setShowScanner(true)} />
+      <Navigation
+        onOpenScanner={() => setShowScanner(true)}
+        onOpenAuth={() => setShowAuth(true)}
+        onOpenHistory={() => setShowHistory(true)}
+      />
       <Hero onOpenScanner={() => setShowScanner(true)} />
       <Features />
       <HowItWorks />
@@ -920,6 +989,8 @@ export function App() {
       <CTA onOpenScanner={() => setShowScanner(true)} />
       <Footer />
       {showScanner && <Scanner onClose={() => setShowScanner(false)} />}
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
+      {showHistory && <History onClose={() => setShowHistory(false)} />}
     </div>
   );
 }

@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+  id TEXT PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS scans;
+CREATE TABLE scans (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  disease_name TEXT NOT NULL,
+  confidence REAL NOT NULL,
+  treatment TEXT NOT NULL,
+  scanned_at DATETIME NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
